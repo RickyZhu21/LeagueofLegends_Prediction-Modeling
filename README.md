@@ -130,7 +130,9 @@ Also, there may be **other limitations with the DecisionTreeClassifier** we are 
 
 ## Performance
 
-After using additional features on top of those used in our Baseline Model and changing the classifier from DecisionTreeClassifier to RandomForestClassifier, throughout many runs, the final model accuracy scores have a steady increase of approximately 0.07(i.e., from 0.72 to 0.79). In comparison with DecisionTreeClassifier, RandomForestClassifier helps in reducing overfitting and increasing the diversity of the trees in the ensemble. Random forests are also less sensitive to noisy data and outliers. What's more, RandomForestClassifier provides a feature importance measure, which helps identify the most important features for prediction. Therefore, RandomForestClassifier improves our model performance in terms of accuracy.
+After using additional features on top of those used in our Baseline Model and changing the classifier from DecisionTreeClassifier to RandomForestClassifier, throughout many runs, the final model accuracy scores have a steady increase of approximately 0.07(i.e., from 0.72 to 0.79). 
+
+In comparison with DecisionTreeClassifier, RandomForestClassifier helps in reducing overfitting and increasing the diversity of the trees in the ensemble. Random forests are also less sensitive to noisy data and outliers. What's more, RandomForestClassifier provides a feature importance measure, which helps identify the most important features for prediction. Therefore, RandomForestClassifier improves our model performance in terms of accuracy.
 
 ---
 
