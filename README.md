@@ -154,7 +154,7 @@ Choice of **Test Statistic**: Difference between accuracy score of Long and Shor
 
 **Significane Level**: 0.05
 
-<iframe src="assets/fairness.html" width=800 height=600 frameBorder=0></iframe>
+<iframe src="assets/fairness2.html" width=800 height=600 frameBorder=0></iframe>
 
 **P-value**: Our p-value vary from 0.9 to almost 1.0 in 100 permutation testings, which are all greater than 0.05.
 
