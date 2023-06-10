@@ -106,33 +106,33 @@ Also, there may be **other limitations with the DecisionTreeClassifier** we are 
 1. **Standardized** damage per minute, damage taken per minute, ward per minute, and vision score per minute
   * Standard Scaler brings the data to a common scale as different features or columns in a dataset may have different scales. This difference in scales can cause certain features to dominate the learning process. StandardScaler equalizes the scales by bringing all features to a similar range, ensuring that no single feature dominates the others.
 
-2. Robust scaled kill-death-assist ratio, earned gold per minute, creep score per minute, and total monster kills
-  * RobustScaler scales the data by removing the median and scaling it according to the interquartile range, making it robust to outliers while still preserves the distribution shape of the original data. This can be particularly useful when the data contains skewed distributions or contains outliers that are meaningful to the problem.
+2. **Robust scaled** kill-death-assist ratio, earned gold per minute, creep score per minute, and total monster kills
+  * RobustScaler scales the data by removing the median and scaling it according to the interquartile range, making it **robust to outliers** while still **preserves the distribution shape of the original data.** This can be particularly useful when the data contains skewed distributions or contains outliers that are meaningful to the problem.
   * We use RobustScaler on these columns because they have huge outliers. 
   
-3. Binarized game length
+3. **Binarized** game length
   * Binarizer is used to transform a continuous variable into a binary representation based on a specific cutoff point. As the 'gamelength' column is continuous, it can be useful.
   * We believe that using binarized feature of short and long game(> 30 min, or 1800 sec) will help us better predict the position of a player is playing because short games usually will produce skewed results(Ex: Support doing more damage than bot laners like AD carry), while long game can produce a better result in predicting as everyone’s damage during the game can be more stable and useful in predicting player’s position post-game.
   
-4. One-Hot-Encoded game result
+4. **One-Hot-Encoded** game result
   * Although the 'result' column has a int64 datatype and consists of 1s and 0s, it is better to see it as a categorical column of winning and losing.
   * This transformer preserves the categorical nature of the data and prevents the model from assuming any ordinal relationship between categories.
   * OneHotEncoder allows for easy interpretation of the impact of each category on the model's predictions.
-- We use RandomForestClassifier. RandomForestClassifier combines multiple decision trees to form an ensemble. Each tree is constructed using a different random subset of the training data and random feature subsets. At each node of the decision tree, a random subset of features is considered for splitting.
+- We use **RandomForestClassifier**. RandomForestClassifier combines multiple decision trees to form an ensemble. Each tree is constructed using a different random subset of the training data and random feature subsets. At each node of the decision tree, a random subset of features is considered for splitting.
 
-- We perform a GridSearchCV because it allows us to define a grid of hyperparameter values to search over. It exhaustively tries all possible combinations of these values and evaluates the model's performance using cross-validation. This helps in finding the best combination of hyperparameters that optimize the model's performance on the given data.
+- We perform a **GridSearchCV** because it allows us to define a grid of **hyperparameter** values to search over. It exhaustively tries all possible combinations of these values and evaluates the model's performance using cross-validation. This helps in finding the best combination of hyperparameters that optimize the model's performance on the given data.
 
-- criterion: gini. The criterion determines the quality of a split in each decision tree within the random forest. The value 'gini' indicates that the Gini impurity measure is used to evaluate the splits. Gini impurity measures the degree of impurity or uncertainty in a node based on the class distribution.
+- **criterion: gini.** The criterion determines the quality of a split in each decision tree within the random forest. The value 'gini' indicates that the Gini impurity measure is used to evaluate the splits. Gini impurity measures the degree of impurity or uncertainty in a node based on the class distribution.
 
-- max_depth: 15. The max_depth parameter specifies the maximum depth allowed for each decision tree in the random forest. It limits the number of levels in the tree from the root node to the leaf nodes. In this case, the maximum depth is set to 15, meaning that each tree will have a maximum of 15 levels.
+- **max_depth: 15.** The max_depth parameter specifies the maximum depth allowed for each decision tree in the random forest. It limits the number of levels in the tree from the root node to the leaf nodes. In this case, the maximum depth is set to 15, meaning that each tree will have a maximum of 15 levels.
 
-- min_samples_split: 10. The min_samples_split parameter determines the minimum number of samples required to split an internal node. If the number of samples at a node is less than this value, the node will not be split further and will become a leaf node. Here, the minimum number of samples required for splitting a node is set to 10.
+- **min_samples_split: 10.** The min_samples_split parameter determines the minimum number of samples required to split an internal node. If the number of samples at a node is less than this value, the node will not be split further and will become a leaf node. Here, the minimum number of samples required for splitting a node is set to 10.
 
 ## Performance
 
-After using additional features on top of those used in our Baseline Model and changing the classifier from DecisionTreeClassifier to RandomForestClassifier, throughout many runs, the final model accuracy scores have a steady increase of approximately 0.07(i.e., from 0.72 to 0.79). 
+After using additional features on top of those used in our Baseline Model and changing the classifier from DecisionTreeClassifier to RandomForestClassifier, throughout many runs, the final model accuracy scores have a **steady increase of approximately 0.07**(i.e., from 0.72 to 0.79). 
 
-In comparison with DecisionTreeClassifier, RandomForestClassifier helps in reducing overfitting and increasing the diversity of the trees in the ensemble. Random forests are also less sensitive to noisy data and outliers. What's more, RandomForestClassifier provides a feature importance measure, which helps identify the most important features for prediction. Therefore, RandomForestClassifier improves our model performance in terms of accuracy.
+In comparison with DecisionTreeClassifier, RandomForestClassifier helps in **reducing overfitting** and increasing the diversity of the trees in the ensemble. Random forests are also **less sensitive to noisy data and outliers**. What's more, RandomForestClassifier provides a feature importance measure, which helps identify the most important features for prediction. Therefore, RandomForestClassifier improves our model performance in terms of accuracy.
 
 ---
 
