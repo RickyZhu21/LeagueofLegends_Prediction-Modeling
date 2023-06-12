@@ -118,6 +118,9 @@ Also, there may be **other limitations with the DecisionTreeClassifier** we are 
   * Although the 'result' column has a int64 datatype and consists of 1s and 0s, it is better to see it as a categorical column of winning and losing.
   * This transformer preserves the categorical nature of the data and prevents the model from assuming any ordinal relationship between categories.
   * OneHotEncoder allows for easy interpretation of the impact of each category on the model's predictions.
+
+## Modeling Algorithm
+
 - We use **RandomForestClassifier**. RandomForestClassifier combines multiple decision trees to form an ensemble. Each tree is constructed using a different random subset of the training data and random feature subsets. At each node of the decision tree, a random subset of features is considered for splitting.
 
 - We perform a **GridSearchCV** because it allows us to define a grid of **hyperparameter** values to search over. It exhaustively tries all possible combinations of these values and evaluates the model's performance using cross-validation. This helps in finding the best combination of hyperparameters that optimize the model's performance on the given data.
